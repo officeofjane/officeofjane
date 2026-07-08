@@ -7,7 +7,7 @@
   <section>
     <h1>{copy.hed}</h1>
     <p>{copy.bio}</p>
-    <p>You can reach me via <a href="mailto:officeofjane@gmail.com">email</a>.</p>
+    <p>You can reach me via <a href="mailto:jane@officeofjane.com">email</a>.</p>
   </section>
 
 <style>

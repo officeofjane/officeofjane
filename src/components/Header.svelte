@@ -2,7 +2,7 @@
   import { page } from '$app/state';
 
   const navItems = [
-    { href: '/about', label: 'About' },
+    // { href: '/about', label: 'About' },
   ];
 </script>
 
@@ -15,6 +15,7 @@
         {item.label}
       </a>
     {/each}
+    <span>About</span>
     <span>Notes</span>
   </nav>
 </header>
@@ -22,7 +23,7 @@
 <style>
   header {
     max-width: var(--copy-width);
-    margin: 1% auto 0 auto;
+    margin: 8px auto 0 auto;
     position: relative;
 
     display: flex;
@@ -37,8 +38,9 @@
   }
 
   header .home {
-    font-family: monospace;
+    font-family: var(--font-mono);
     font-size: 0.875rem;
+    color: var(--colour-primary);
   }
 
   header nav {
@@ -50,7 +52,7 @@
   }
 
   header nav a.active {
-    color: var(--colour-highlight)
+    color: var(--colour-secondary)
   }
 
   header nav span {

@@ -1,5 +1,7 @@
-@import "font.css";
 @import "reset.css";
+@import "font.css";
+/* @import "grid.css"; */
+
 
 /* CSS does not yet support variables for media queries. Reference only (from Josh Comeau):
 * 0-550px — Mobile
@@ -23,23 +25,38 @@ Mobile first, default phones from 0px to 549px
 
   --font-sans: -apple-system, BlinkMacSystemFont, "IBM Plex Sans", Segoe UI, Helvetica, Arial, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --font-serif: "Martina Plantijn", serif;
 
-  --colour-text: #333;
-  --colour-gray-light: rgba(0, 0, 0, 0.25);
-  --colour-background: whitesmoke;
-  --colour-highlight: rgb(0,100,200);
+  --colour-background: hsla(54, 22%, 82%, 0.16);
+
+  /* delaunay */
+  /* --colour-text: #203B73; */
+  --colour-text: hsl(220deg 56% 20%);
+  --colour-text-dim: hsl(222deg 13% 45%);
+  --colour-border: hsl(220deg 10% 86%);
+  --colour-primary: #62744C;
+  --colour-secondary: #C9581F;
   
+  /* cezanne */
+  /* --colour-text: #364451;
+  --colour-highlight: #B39460;
+  --colour-logo: #9B4425; */
 
-  --shadow-colour: 15deg 41% 48%;
-  --shadow-elevation-low:
-    0.3px 0.5px 0.5px hsl(var(--shadow-colour) / 0.73),
-    0.4px 0.7px 0.7px -2.3px hsl(var(--shadow-colour) / 0.51),
-    1.1px 2.2px 2px -4.6px hsl(var(--shadow-colour) / 0.29);
+  /* hopper */
+  /* --colour-text: ##2B3837;
+  --colour-highlight: #1E5A73;
+  --colour-logo: #974023; */
+
+  --shadow-colour: 87.0deg 20.8% 37.6%;
+  --shadow-elevation-low: 
+			0.3px 0.5px 0.7px hsl(var(--shadow-color) / 0.2),
+			0.4px 0.8px 1px -1.2px hsl(var(--shadow-color) / 0.2),
+			1px 2px 2.5px -2.5px hsl(var(--shadow-color) / 0.2);
   --shadow-elevation-medium:
-    0.3px 0.5px 0.5px hsl(var(--shadow-colour) / 0.77),
-    0.5px 1px 0.9px -1.5px hsl(var(--shadow-colour) / 0.59),
-    1.8px 3.7px 3.3px -3.1px hsl(var(--shadow-colour) / 0.42),
-    5.4px 10.8px 9.8px -4.6px hsl(var(--shadow-colour) / 0.24);
+    0.3px 0.5px 0.5px hsl(var(--shadow-colour) / 0.48),
+    0.5px 1px 0.9px -1.5px hsl(var(--shadow-colour) / 0.36),
+    1.8px 3.7px 3.3px -3.1px hsl(var(--shadow-colour) / 0.24),
+    5.4px 10.8px 9.8px -4.6px hsl(var(--shadow-colour) / 0.12);
   --shadow-elevation-high:
     0.3px 0.5px 0.5px hsl(var(--shadow-colour) / 0.71),
     0.5px 1.1px 1px -0.7px hsl(var(--shadow-colour) / 0.63),
@@ -53,6 +70,7 @@ Mobile first, default phones from 0px to 549px
 
 
 body {
+  --section-padding: 5rem;
   padding: 20px;
   
   background-color: var(--colour-background);
@@ -60,8 +78,28 @@ body {
   font-family: var(--font-sans);
 }
 
+body::before {
+    content: "";
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    opacity: 0.25;
+    pointer-events: none;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    background-size: 200px 200px;
+}
+
+
 h1, h2, h3, h4, h5, h6, p {
   margin: 1rem 0;
+}
+
+h1 {
+  font-size: 1.5rem;
+  font-weight: 600;
 }
 
 h2 {
@@ -70,11 +108,12 @@ h2 {
 
 a {
 	color: inherit;
-	text-decoration-color: var(--colour-gray-light);
+	text-decoration-color: var(--colour-border);
+  text-decoration-thickness: 1px;
   text-underline-offset: 0.125rem;
 }
 
 a:hover {
-	color: var(--colour-highlight);
-  text-decoration-color: var(--colour-highlight);
+	color: var(--colour-secondary);
+  text-decoration-color: var(--colour-secondary);
 }
